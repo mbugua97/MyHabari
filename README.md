@@ -1,6 +1,6 @@
 # myhabari
 
-![MyHabari Logo](.app_utils/NEWS.jpg) <!-- Replace with the actual path to your logo image -->
+![MyHabari Logo](app_utils/NEWS.jpg) <!-- Replace with the actual path to your logo image -->
 
 **myhabari** is  news aggregator app developed as part of a technical test at Teach2Give. The app provides users with a seamless experience of accessing news from various sources. It demonstrates skills in both frontend and backend development.
 
