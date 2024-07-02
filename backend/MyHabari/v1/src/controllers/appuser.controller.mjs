@@ -44,6 +44,8 @@ export const RegisterUser = async (req, res) => {
 //update the app user
 export const UpdateUser = patchUser;
 
+
+
 //deleting app user
 export const DeleteUser = deleteuser;
 
