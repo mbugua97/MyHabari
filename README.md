@@ -9,6 +9,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Backend](#backend)
+- [Frontend](#frontend)
 
 ## Introduction
 
@@ -20,10 +21,20 @@ myhabari aggregates news from multiple sources and delivers a personalized and c
 ## Backend
 
 - **Repository**: [Backend GitHub Repository](<https://github.com/mbugua97/MyHabari>)
-- **Technologies**: Node.js, Express, MongoDB
+- **Technologies**: Node.js, Express, MongoDB,SQL
 - **Branches**:
   - `Production`
   - `Development`
+
+
+## Frontend
+
+- **Repository**: [frontend GitHub Repository](<https://github.com/mbugua97/MyHabari>)
+- **Technologies**: React
+- **Branches**:
+  - `Production`
+  - `Development`
+
 
 ## Installation
 
