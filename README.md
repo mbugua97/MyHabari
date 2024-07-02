@@ -8,19 +8,7 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Frontend](#frontend)
 - [Backend](#backend)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-  - [Frontend Setup](#frontend-setup)
-  - [Backend Setup](#backend-setup)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-  - [Frontend Structure](#frontend-structure)
-  - [Backend Structure](#backend-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ## Introduction
 
