@@ -1,0 +1,37 @@
+stages:
+  - test-Backend
+  - build-Backend
+  - deploy-Backend
+  - test-Frontend
+  - build-Frontend
+  - deploy-Frontend
+
+
+test_backend:
+  stage: test-Backend
+  image: node:20-alpine
+  only:
+  - development
+  - production
+  script:
+    - echo "will run the test here"
+
+build_backend:
+  stage: build-Backend
+  image: node:20-alpine
+  only:
+  - production
+  script:
+    - echo "will run the build here"
+
+deploy_backend:
+  stage: deploy-Backend
+  image: node:20-alpine
+  only:
+  - production
+  script:
+    - echo "will run the deployment here"
+
+
+
+
