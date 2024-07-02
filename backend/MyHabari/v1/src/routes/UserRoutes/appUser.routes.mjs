@@ -1,34 +1,28 @@
+//app dependacies
 import  {Router} from "express"
+
+//user controllers
+import { Users,User,RegisterUser,UpdateUser,DeleteUser} from "../../controllers/appuser.controller.mjs"
 const AppUser = Router()
 
 
 //getting  all userUsers
 //protected for only Super admin User
-AppUser.get('/api/v1/user', (req, res) => {
-    res.send("get all users")
-})
+AppUser.get('/api/v1/users',Users)
 
 
-//getting one user
-AppUser.get('/api/v1/user/:id', (req, res) => {
-    res.send("get one user")
-})
+//getting one user by id
+AppUser.get('/api/v1/user',User)
 
 
 //registering
-AppUser.post('/api/v1/user', (req, res) => {
-    res.send("register a user")
-})
+AppUser.post('/api/v1/user', RegisterUser)
 
 
 //updating
-AppUser.patch('/api/v1/user', (req, res) => {
-    res.send("update a user")
-})
+AppUser.patch('/api/v1/user',UpdateUser)
 
 //updating
-AppUser.delete('/api/v1/user', (req, res) => {
-    res.send("delete a user")
-})
+AppUser.delete('/api/v1/user',DeleteUser)
 
 export default AppUser

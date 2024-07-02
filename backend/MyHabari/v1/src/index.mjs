@@ -4,7 +4,9 @@ import router from "./routes/index.mjs";
 
 const app = express()
 
+app.use(express.json());
 
+//app routes
 app.use(router)
 
 
