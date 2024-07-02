@@ -22,8 +22,8 @@ myhabari aggregates news from multiple sources and delivers a personalized and c
 - **Repository**: [Backend GitHub Repository](<https://github.com/mbugua97/MyHabari>)
 - **Technologies**: Node.js, Express, MongoDB
 - **Branches**:
-  - `production`
-  - `development`
+  - `Production`
+  - `Development`
 
 ## Installation
 
