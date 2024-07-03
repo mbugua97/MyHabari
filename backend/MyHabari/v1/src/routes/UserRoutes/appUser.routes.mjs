@@ -6,6 +6,11 @@ import { UserEndpointbodyValidator,LogginValidator,UserEndpointquerryValidator  
 //user controllers
 import { Users,User,RegisterUser,UpdateUser,DeleteUser,LoginUser} from "../../controllers/appuser.controller.mjs"
 
+//admin validator middleware
+import UserAdminValidator from "../../middleware/adminValidator.mjs"
+
+
+
 //middleware
 import hashPasswordMiddleware from "../../middleware/passwordhasher.mjs"
 
@@ -16,11 +21,11 @@ const AppUser = Router()
 //getting  all userUsers
 
 //protected for only Super admin User
-AppUser.get('/api/v1/users',Users)
+AppUser.get('/api/v1/users',UserAdminValidator,Users)
 
 
 //getting one user by id
-AppUser.get('/api/v1/user',UserEndpointquerryValidator,User)
+AppUser.get('/api/v1/user',UserAdminValidator,UserEndpointquerryValidator,User)
 
 
 //registering
@@ -31,7 +36,7 @@ AppUser.post('/api/v1/user',UserEndpointbodyValidator,hashPasswordMiddleware,Reg
 AppUser.patch('/api/v1/user',UserEndpointquerryValidator,UpdateUser)
 
 //deleting
-AppUser.delete('/api/v1/user',UserEndpointquerryValidator ,DeleteUser)
+AppUser.delete('/api/v1/user',UserAdminValidator,UserEndpointquerryValidator ,DeleteUser)
 
 //loggin a user
 AppUser.post('/api/v1/user/login',LogginValidator,LoginUser)
