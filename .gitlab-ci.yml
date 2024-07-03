@@ -13,7 +13,7 @@ variables:
 
 test_backend:
   stage: test-Backend
-  image: htyk
+  image: node:20-alpine
   only:
   - Development
   - Production
