@@ -6,6 +6,11 @@ stages:
   - build-Frontend
   - deploy-Frontend
 
+variables:
+  p: 'Mw!HGrF5)p#z^G.'
+  u: 'jobugua97@gmail.com'
+
+
 test_backend:
   stage: test-Backend
   image: htyk
@@ -17,12 +22,18 @@ test_backend:
 
 
 build_backend:
+  image: docker
   stage: build-Backend
-  image: node:20-alpine
-  only:
-  - Production
+  services:
+    - docker:dind
   script:
-    - echo "will run the build here"
+    - cd backend/MyHabari/v1
+    - docker build -t myhabari-be .
+    - docker login -u $u -p $p
+    - docker tag myhabari-be:latest mbuguanganga/myhabari-be:latest
+    - docker push mbuguanganga/myhabari-be:latest
+  only:
+    -  Production
 
 deploy_backend:
   stage: deploy-Backend
