@@ -36,9 +36,8 @@ export const  user=async (req,res)=>{
   if(!errors.isEmpty()) {
       return res.status(400).json({errors: errors.array()})
   }
-
     try {
-      const { query: {User_id } } = req;
+      const User_id=req.User_id 
       const parsedId = parseInt(User_id);
 
       const user = await prisma.Users.findUnique({
@@ -53,7 +52,7 @@ export const  user=async (req,res)=>{
       });
 
       if (!user) {
-        res.status(404).send("User not found");
+        res.status(404).send({"message":"User not found"});
         return;
       }
   
