@@ -15,16 +15,21 @@
 
 myhabari aggregates news from multiple sources and delivers a personalized and categorized news feed to users. This project highlights capabilities in React for frontend development and Express for backend development.
 
-## Features
+
+## Branches
+  - **Branches**:
+  - `Production`
+  - `Development`
+        - **Dev branches**
+                - `Frontend`
+                - `Backend`
+          
 
 
 ## Backend
 
 - **Repository**: [Backend GitHub Repository](<https://github.com/mbugua97/MyHabari>)
 - **Technologies**: Node.js, Express, MongoDB,SQL
-- **Branches**:
-  - `Production`
-  - `Development`
 
 
 ## Frontend
