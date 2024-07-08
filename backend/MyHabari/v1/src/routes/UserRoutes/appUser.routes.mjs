@@ -19,7 +19,7 @@ const AppUser = Router()
 AppUser.get('/api/v1/users',UserAdminValidator,Users)
 
 //getting one user
-AppUser.get('/api/v1/user/:id',UserById,User)
+AppUser.get('/api/v1/user/:id',UserAdminValidator,UserById,User)
 
 //getting logged user
 AppUser.get('/api/v1/user',UserValidator,User)
