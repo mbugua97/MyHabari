@@ -35,7 +35,7 @@ export const RegisterUser = async (req, res) => {
       Name,
       Email,
       Password,
-      Admin,
+      Admin:false,
     };
     const createduser = await AddUser(newuser);
     res.status(201).json(createduser);
@@ -74,26 +74,22 @@ export const LoginUser = async (req, res) => {
       Password,
     };
 
+
     const Loggeduser = await LogUser(user);
 
     if (Loggeduser == null) {
-      return res.status(404).json({ message: "Check  username or password" });
+      return res.status(400).json({ message: "Check  username or password" });
     }
     const isMatch = await bcrypt.compare(Password, Loggeduser.Password);
 
     if (isMatch) {
-      // Login successful
-      // JWT with the user ID
-      const JWT_SECRET=process.env.JWT_SECRET
-      const token = jwt.sign({ user:Loggeduser}, process.env.JWT_SECRET, { expiresIn: "1h" }); // Token expires in 1 hour
-      // Set the JWT as a cookie
-      res.cookie("MH_TkN", token, {signed:true,httpOnly:true }); // Set secure: true in production with HTTPS
+      const accessToken=createAccessToken(Loggeduser,Loggeduser.Admin)
 
-      return res.status(200).json({ message: "Successful login" });
+      sendAccessToken(req,res,accessToken)
 
     } else {
       // if password mismatch
-      return res.status(404).json({ message: "Check  username or password" });
+      return res.status(400).json({ message: "Check  username or password" });
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -103,7 +99,7 @@ export const LoginUser = async (req, res) => {
 
 
 export const LogOutUser = async (req, res) => {
-res.clearCookie("MH_TkN")
+    res.clearCookie("MH_TkN")
 return res.status(200).json({ message: "Successful loggout" });
 }
 

@@ -3,17 +3,20 @@ import jwt from 'jsonwebtoken';
 import { query } from 'express';
 
 export const UserAdminValidator = async (req, res, next) => {
-    if (req.signedCookies.MH_TkN) {
-        const token = req.signedCookies.MH_TkN;
+    const authHeader = req.headers['authorization'];
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
         try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify and decode the token
-            if (decoded && decoded.user.Admin === true) {
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Verify and decode the token
+            //checking if admin
+            if (decoded.role===true) {
                 next();
             } else {
                 return res.status(401).json({ message: 'Only Admin allowed' });
             }
         } catch (error) {
-           return  res.status(401).json({ message: 'expired token login again' });
+           return  res.status(401).json({ message: 'invalid token  again' });
         }
     } else {
        return res.status(401).json({ message: 'Please log in' });
@@ -21,14 +24,15 @@ export const UserAdminValidator = async (req, res, next) => {
 };
 
 export const UserValidator = async (req, res, next) => {
-  if (req.signedCookies.MH_TkN) {
-      const token = req.signedCookies.MH_TkN;
+    const authHeader = req.headers['authorization'];
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
       try {
-          const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify and decode the token
-          req.User_id=decoded.user.id
+          const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Verify and decode the token
+          req.User_id=decoded.userId.id
           next();
-      } catch (error) {ext();
-         return  res.status(401).json({ message: 'expired token login again' });
+      } catch (error) {
+         return  res.status(401).json({ message: 'invalid token' });
       }
   } else {
      return res.status(401).json({ message: 'Please log in' });
