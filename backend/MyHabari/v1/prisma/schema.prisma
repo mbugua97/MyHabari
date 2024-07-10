@@ -8,9 +8,31 @@ datasource db {
 }
 
 model Users {
-  id       Int     @id @default(autoincrement()) @db.UnsignedInt
-  Name     String  @db.VarChar(255)
-  Email    String? @unique(map: "users_email_unique") @db.Char(255)
-  Password String  @db.Char(255)
-  Admin    Boolean @default(false)
+  id               Int                @id @default(autoincrement()) @db.UnsignedInt
+  Name             String             @db.VarChar(255)
+  Email            String             @unique(map: "users_email_unique") @db.Char(255)
+  Password         String             @db.Char(255)
+  Admin            Boolean            @default(false)
+  profilePic       String?            @db.VarChar(255)
+  Publishedcontent Publishedcontent[]
+}
+
+model ContentCategory {
+  id               Int                @id @default(autoincrement()) @db.UnsignedInt
+  categoryName     String             @db.VarChar(255)
+  Publishedcontent Publishedcontent[]
+}
+
+model Publishedcontent {
+  id              Int             @id @default(autoincrement()) @db.UnsignedInt
+  content         String          @db.LongText
+  content_title   String          @db.VarChar(225)
+  owner_id        Int             @db.UnsignedInt
+  category        Int             @db.UnsignedInt
+  ready           Boolean         @default(false)
+  ContentCategory ContentCategory @relation(fields: [category], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "publishedcontent_category_foreign")
+  Users           Users           @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "publishedcontent_owner_id_foreign")
+
+  @@index([category], map: "publishedcontent_category_foreign")
+  @@index([owner_id], map: "publishedcontent_owner_id_foreign")
 }

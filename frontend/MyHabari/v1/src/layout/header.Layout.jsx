@@ -18,6 +18,10 @@ const Header = () => {
 
 
 <div>
+    <h2>ManageApp</h2>
+</div>
+
+<div>
 <div>
     <h2>Account</h2>
 </div>

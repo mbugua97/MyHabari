@@ -1,7 +1,12 @@
+//app dependancies
 import express from "express";
-import router from "./routes/index.mjs";
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+
+
+//imports
+import router from "./routes/index.mjs";
+import NewsCategory from "./routes/NewsContent/Categories/news.Categories.mjs";
 
 const app = express()
 
@@ -17,7 +22,7 @@ app.use(cors({
 
 
 //app routes
-app.use(router)
+app.use('/api/v1',router)
 
 
 

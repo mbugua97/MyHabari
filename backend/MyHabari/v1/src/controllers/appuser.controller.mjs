@@ -53,11 +53,6 @@ export const UpdateUser = patchUser;
 export const DeleteUser = deleteuser;
 
 
-
-
-
-
-
 //login in a user to set a cookie
 
 export const LoginUser = async (req, res) => {
