@@ -15,6 +15,13 @@ process.on("uncaughtException", (err) => {
 
 export const  UsersList=async (req,res)=>{
   try {
+
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10; 
+    const skip = (page - 1) * limit; 
+
+    
     const users = await prisma.Users.findMany({
       //abstracting the password
       select: {
@@ -22,9 +29,26 @@ export const  UsersList=async (req,res)=>{
         Name: true,
         Email: true,
         Admin: true,
-      }}
+      },
+      skip: skip,
+      take: limit,
+      orderBy: {
+        id: 'desc' 
+      }
+
+    }
+      
     );
-    res.json(users);
+    const totalCount = users.length;
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({
+      currentPage: page,
+      totalPages: totalPages,
+      totalCount: totalCount,
+      data: users
+
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

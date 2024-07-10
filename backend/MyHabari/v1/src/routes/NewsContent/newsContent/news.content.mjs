@@ -4,31 +4,36 @@ import  {Router} from "express"
 //admin validator middleware
 import { UserAdminValidator,UserValidator } from "../../../middleware/adminValidator.mjs"
 
+import { Newnewscontent,News, deletecontent, newsBycategory,newsByowner } from "../../../controllers/newscontent.controller.mjs"
+
+import { AdminorOwnerValidator } from "../../../middleware/adminValidator.mjs"
+
+
+import { categoryid } from "../../../middleware/categories.middleware.mjs"
 const NewsContent = Router()
 
+//data fetch pagination
 
-//protected for only Super admin User
-NewsContent.get('/content',UserValidator,(req,res)=>{
-    res.send("you fetched all news ")
-})
+NewsContent.get('/content',UserValidator,News)
 
-NewsContent.post('/content',UserValidator,(req,res)=>{
-    res.send("you posted news ")
-})
+NewsContent.post('/content',UserValidator,Newnewscontent)
 
-
-NewsContent.get('/content/:id',UserValidator,(req,res)=>{
-    res.send("you fetched specific news")
-})
+//getting by category
+NewsContent.get('/content/category/:id',UserValidator,categoryid,newsBycategory)
 
 
-NewsContent.patch('/content/:id',UserValidator,(req,res)=>{
+//getting by user id
+NewsContent.get('/content/owner/:id',UserValidator,categoryid,newsByowner)
+
+
+
+NewsContent.patch('/content/:id',AdminorOwnerValidator,(req,res)=>{
     res.send("you updated news")
 })
 
-NewsContent.delete('/content/:id',UserValidator,(req,res)=>{
-    res.send("you  delete news")
-})
+
+
+NewsContent.delete('/content/:id',AdminorOwnerValidator,categoryid,deletecontent)
 
 
 export default NewsContent
