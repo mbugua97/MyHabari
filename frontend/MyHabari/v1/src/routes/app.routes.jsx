@@ -5,7 +5,7 @@ import LoginPage from '../pages/UsersManagement/login.page';
 import UserRegister from '../pages/UsersManagement/register.page';
 import HomePage from '../pages/home.page';
 import FogotPage from '../pages/UsersManagement/fogot.page';
-
+import NotFoundPage from '../pages/NotfoundPage';
 function AppRoutes() {
   
   const isAuthenticated = Cookies.get('MH_TKN') !== undefined;
@@ -16,8 +16,9 @@ function AppRoutes() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<UserRegister />} />
-          <Route path="/forgot" element={<FogotPage />} />
+          <Route path="/fogot" element={<FogotPage />} />
           <Route path="/" element={isAuthenticated ? <HomePage /> : <LoginPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
     </div>
     </Router>

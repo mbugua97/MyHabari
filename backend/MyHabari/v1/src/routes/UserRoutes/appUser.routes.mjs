@@ -16,28 +16,28 @@ const AppUser = Router()
 //getting  all userUsers
 
 //protected for only Super admin User
-AppUser.get('/api/v1/users',UserAdminValidator,Users)
+AppUser.get('/users',UserAdminValidator,Users)
 
 //getting one user
-AppUser.get('/api/v1/user/:id',UserAdminValidator,UserById,User)
+AppUser.get('/user/:id',UserAdminValidator,UserById,User)
 
 //getting logged user
-AppUser.get('/api/v1/user',UserValidator,User)
+AppUser.get('/user',UserValidator,User)
 
 //registering a user
-AppUser.post('/api/v1/user',UserEndpointbodyValidator,hashPasswordMiddleware,RegisterUser)
+AppUser.post('/user',UserEndpointbodyValidator,hashPasswordMiddleware,RegisterUser)
 
 //updating a user
-AppUser.patch('/api/v1/user',UserAdminValidator,UserEndpointquerryValidator,UpdateUser)
+AppUser.patch('/user',UserAdminValidator,UserEndpointquerryValidator,UpdateUser)
 
 //deleting a user
-AppUser.delete('/api/v1/user',UserAdminValidator,UserEndpointquerryValidator ,DeleteUser)
+AppUser.delete('/user',UserAdminValidator,UserEndpointquerryValidator ,DeleteUser)
 
 //loggin a user
-AppUser.post('/api/v1/user/login',LogginValidator,LoginUser)
+AppUser.post('/user/login',LogginValidator,LoginUser)
 
 //loggout a user
-AppUser.post('/api/v1/user/logout',LogOutUser)
+AppUser.post('/user/logout',LogOutUser)
 
 
 
