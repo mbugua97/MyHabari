@@ -1,21 +1,24 @@
 import React from 'react';
 import {Grid,GridItem,Show} from '@chakra-ui/react'
 
+import { useSelector } from 'react-redux';
+
+//import layouts
 import Header from '../layout/header.Layout';
 import Footer from '../layout/footer.Layout';
+import SidbarLayout from '../layout/sidebar.layout';
+import MainLayout from '../layout/main.layout';
 
 const HomePage = () => {
   return( 
    <>
    <Grid
-   
-   templateAreas={{ base:`"nav" "main" "footer"`, md: `"nav nav" "sidebar main" "footer footer"`}} 
-   
-   
+   templateAreas={{ base:`"nav" "main" `, md: ` "nav nav" "sidebar main"`}}
    templateColumns={{
     base:'1fr',
-    md:'400px 1fr'
-   }}> 
+    md:'1fr 3fr'
+   }}
+  > 
 
 <GridItem area="nav" >
   <Header/>
@@ -23,21 +26,16 @@ const HomePage = () => {
 
 <Show above='md'>
   <GridItem area="sidebar">
-    <h2>this is my sidebar</h2>
+    <SidbarLayout/>
   </GridItem>
+
 </Show>
 
-
 <GridItem area="main">
-<h2>this is my main</h2>
+
+<MainLayout/>
+
 </GridItem>
-
-
-<GridItem area="footer">
-  <Footer/>
-</GridItem>
-
-
    </Grid>
    </>
 );

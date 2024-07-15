@@ -1,0 +1,6 @@
+.myhabari{
+  background-image:url('../../assets/images/defaults/NEWS.jpg');
+  background-repeat: no-repeat,cover,fit;
+  background-size:100%;
+  height: 100vh;
+}
