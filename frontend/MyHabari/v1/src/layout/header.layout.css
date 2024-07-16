@@ -1,6 +1,21 @@
 .headerWrapper{
+    background-color: aliceblue;
+    height:60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 20px;
+    padding-right: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.notificationLogout{
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Notifications{
+    padding-right : 50px;
 }

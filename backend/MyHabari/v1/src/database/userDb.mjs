@@ -29,6 +29,8 @@ export const  UsersList=async (req,res)=>{
         Name: true,
         Email: true,
         Admin: true,
+        profilePic :true
+
       },
       skip: skip,
       take: limit,
@@ -72,6 +74,7 @@ export const  user=async (req,res)=>{
           Name: true,
           Email: true,
           Admin: true,
+          profilePic :true
         },
       });
 

@@ -1,12 +1,16 @@
 // styling
 import './loginpage.css'
 
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../app/userSlice';
+
 import FormInput from '../../components/form.component';
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate,Link } from 'react-router-dom';
-
+import ImageDisplayComponent from '../../components/image.component';
+import photos from '../../assets/images/photos';
 
 const Root_url='http://127.0.0.1:3000/api/v1/'
 
@@ -14,11 +18,11 @@ const Root_url='http://127.0.0.1:3000/api/v1/'
 
 
 const LoginPage = () => {
-
+  
+  const dispatch = useDispatch();
   //posting the data
 
   const url=Root_url+'user/login'
-
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,6 +32,8 @@ const LoginPage = () => {
 
  
   useEffect(() => {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const login = async () => {
       try {
         setError('');
@@ -35,11 +41,19 @@ const LoginPage = () => {
         const response = await axios.post(url, { Email, Password });
         //extracting the token
         const { token } = response.data;
+;
 
-        //setting the token
         Cookies.set('MH_TKN', token, { expires:10/1440 });
+        const userData = await axios.get(`${Root_url}user`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        await dispatch(loginSuccess(userData.data));
 
-        window.location.reload()
+
+        await sleep(2000);
+        
+       navigate('/home');
+
 
       } catch (err) {
         setError('Invalid email or password. Please try again.');
@@ -67,19 +81,41 @@ const LoginPage = () => {
 
 
   return( 
-    <div>
-    <h2>Login</h2>
+    <div className='Loginpage'>
+        <div className='applogo'>
+            <ImageDisplayComponent src={photos.applogo} height={"100px"}/>
+        </div>
+        <div>
+        <h2>Login</h2>
+        </div>
+
+
+        {isSubmitting&& (
+          <div className='loadingOverlay'>
+             <ImageDisplayComponent className='loadingSvg' src={photos.loading} height={"30px"}/>
+          </div>
+        )}
+
+      <div className='loginform'>
     {error}
     <form onSubmit={handleLogin}>
       <FormInput label="Email" type="email"  value={Email} onChange={(e) => setEmail(e.target.value)} required />
       <FormInput label="Password" type="password" value={Password} onChange={(e) => setPassword(e.target.value)} required />
-      <button type="submit" >
+     
+      <Link className="link" to="/fogot">
+        
+      fogot password ?
+        
+        </Link>
+       
+        <br/>
+     
+      <button className='submitbutton' type="submit" >
       {isSubmitting ? 'Logging in...' : 'Login'}
       </button>
     </form>
-    <Link to="/register">register</Link>
-    <br/>
-    <Link to="/fogot">fogot</Link>
+    </div>
+    <Link className='link' to="/register">register</Link>
   </div>
 
 );

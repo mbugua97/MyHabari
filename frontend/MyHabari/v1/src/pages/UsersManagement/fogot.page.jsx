@@ -1,14 +1,12 @@
 // styling
 import './loginpage.css'
-
 import FormInput from '../../components/form.component';
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate,Link } from 'react-router-dom';
-
-
-
+import photos from '../../assets/images/photos';
+import ImageDisplayComponent from '../../components/image.component';
 
 
 const LoginPage = () => {
@@ -38,7 +36,7 @@ const LoginPage = () => {
 
       } catch (err) {
         setError('Invalid email or password. Please try again.');
-        console.log(error);
+        console.log(err);
 
       } 
       finally {
@@ -62,15 +60,32 @@ const LoginPage = () => {
 
 
   return( 
-    <div>
-    <h2>Login</h2>
+    <div className='Loginpage'>
+
+
+<div className='applogo'>
+            <ImageDisplayComponent src={photos.applogo} height={"100px"}/>
+        </div>
+        <div>
+        <h2>forget</h2>
+        </div>
+
+    <div className='loginform'>
+    {isSubmitting&& (
+          <div className='loadingOverlay'>
+             <ImageDisplayComponent className='loadingSvg' src={photos.loading} height={"30px"}/>
+          </div>
+   )}
+
     <form onSubmit={handleLogin}>
       <FormInput label="Email" type="email"  value={Email} onChange={(e) => setEmail(e.target.value)} required />
-      <button type="submit" >
-      {isSubmitting ? 'forgeting...' : 'fogot'}
+      <button  className='submitbutton' type="submit" >
+      {isSubmitting ? 'forgeting...' : 'reset'}
       </button>
     </form>
-    <Link to="/">Login</Link>
+    <Link  className="link" to="/login">Back to Login?</Link>
+  </div>
+
   </div>
 
 );
