@@ -23,8 +23,7 @@ const UserRegister = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  const Root_url='http://127.0.0.1:3000/api/v1/'
-  
+  const Root_url=import.meta.env.VITE_API_URL;
   
   useEffect(() => {
     const register= async () => {

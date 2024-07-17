@@ -7,6 +7,8 @@ import NotificationPage from '../pages/Notification/notification.page';
 
 import photos from '../assets/images/photos';
 
+const Root_url=import.meta.env.VITE_API_URL;
+
 const SidbarLayout = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
@@ -16,17 +18,26 @@ const SidbarLayout = () => {
 
 <div>
     <button onClick={() => dispatch(setPage('home'))}>
-    <ImageDisplayComponent src={photos.darkuser} height={"50px"}/>
+    {user.profilePic===null?
+    <ImageDisplayComponent src={photos.darkuser} height="50px" />:
+    <ImageDisplayComponent src={`${Root_url}${user.profilePic}`} height={"90px"} width={"90px"} />}
     </button>
 </div>
 <br/>
-<button onClick={() => dispatch(setPage('users'))}>users</button>
-<br/>
 <button onClick={() => dispatch(setPage('news'))}>news</button>
 <br/>
-<button onClick={() => dispatch(setPage('setting'))}>settings</button>
+<button onClick={() => dispatch(setPage('notifications'))}>Notifications</button>
 <br/>
-<button onClick={() => dispatch(setPage('notification'))}>Notifications</button>
+
+{user.Admin===true?
+<button onClick={() => dispatch(setPage('setting'))}>app settings</button>
+  :""}
+  <br/>
+{user.Admin===true?
+  <button onClick={()=> dispatch(setPage('users'))}>manage users</button>
+  :""}
+
+<br/>
 </div>
 )}
 

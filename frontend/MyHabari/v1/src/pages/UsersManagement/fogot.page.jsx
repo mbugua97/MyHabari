@@ -12,7 +12,7 @@ import ImageDisplayComponent from '../../components/image.component';
 const LoginPage = () => {
 
   //posting the data
-  const Root_url='http://127.0.0.1:3000/api/v1/'
+  const Root_url=import.meta.env.VITE_API_URL;
   const url=Root_url+'user/login'
 
   const [Email, setEmail] = useState('');

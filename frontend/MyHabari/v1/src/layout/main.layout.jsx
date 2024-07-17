@@ -26,9 +26,7 @@ const MainLayout = () => {
             return < AboutPage/>;
     }
 };
-
-  
-  return( 
+    return( 
 <>
 {renderPage()}
 </>

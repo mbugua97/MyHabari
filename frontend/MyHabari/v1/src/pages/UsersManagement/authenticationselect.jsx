@@ -14,18 +14,15 @@ const SelectAuthenticationType = () => {
             <ImageDisplayComponent src={photos.applogo} height={"100px"}/>
         </div>
         <div className='email'>
-
         <Link to="/login">  log in with Email</Link>
-        
         </div>
-        
         <div className='socialauth'>
         <div className='googlesocial'>
-google
+        <ImageDisplayComponent src={photos.googlephoto} height={"70px"}/>
         </div>
 
-        <div className='facebooksoclial'>
-Facebook
+        <div className='gitsocial'>
+        <ImageDisplayComponent src={photos.githublogo} height={"60px"}/>
         </div>
         </div>
 

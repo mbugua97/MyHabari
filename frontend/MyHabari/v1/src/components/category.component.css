@@ -1,0 +1,11 @@
+.category{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+.categorybutton{
+    background-color:rgb(192, 160, 243);
+    height:50px;
+    width:200px;
+    border-radius:10px;
+}

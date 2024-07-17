@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    currentPage: 'news', // default page
+    currentPage: 'all', // default page
 };
 
-const pageSlice = createSlice({
-    name: 'page',
+const newsSlice = createSlice({
+    name: 'news',
     initialState,
     reducers: {
         setPage: (state, action) => {
@@ -14,5 +14,5 @@ const pageSlice = createSlice({
     },
 });
 
-export const { setPage } = pageSlice.actions;
-export default pageSlice.reducer;
+export const { setPage } = newsSlice.actions;
+export default newsSlice.reducer;

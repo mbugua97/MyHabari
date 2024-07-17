@@ -12,7 +12,7 @@ import { useNavigate,Link } from 'react-router-dom';
 import ImageDisplayComponent from '../../components/image.component';
 import photos from '../../assets/images/photos';
 
-const Root_url='http://127.0.0.1:3000/api/v1/'
+const Root_url=import.meta.env.VITE_API_URL;
 
 
 
@@ -43,7 +43,8 @@ const LoginPage = () => {
         const { token } = response.data;
 ;
 
-        Cookies.set('MH_TKN', token, { expires:10/1440 });
+        Cookies.set('MH_TKN', token, { expires:100/1440 });
+        
         const userData = await axios.get(`${Root_url}user`, {
           headers: { Authorization: `Bearer ${token}` },
         })
