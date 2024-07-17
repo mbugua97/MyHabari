@@ -19,7 +19,7 @@ const AppUser = Router()
 AppUser.get('/users',UserAdminValidator,Users)
 
 //getting one user
-AppUser.get('/user/:id',UserAdminValidator,UserById,User)
+AppUser.get('/user/:id',UserById,User)
 
 //getting logged user
 AppUser.get('/user',UserValidator,User)
@@ -28,7 +28,7 @@ AppUser.get('/user',UserValidator,User)
 AppUser.post('/user',UserEndpointbodyValidator,hashPasswordMiddleware,RegisterUser)
 
 //updating a user
-AppUser.patch('/user',UserAdminValidator,UserEndpointquerryValidator,UpdateUser)
+AppUser.patch('/user',UserEndpointquerryValidator,UpdateUser)
 
 //deleting a user
 AppUser.delete('/user',UserAdminValidator,UserEndpointquerryValidator ,DeleteUser)

@@ -24,7 +24,16 @@ export const ContentList = async (req, res) => {
       orderBy: {
         id: "desc",
       },
+      include: {
+        Users: {
+          select: {
+            Name: true,
+            profilePic: true
+          }
+        }
+      }
     });
+
     res.json({
       currentPage: page,
       totalPages: totalPages,
@@ -57,6 +66,14 @@ export const NewsByCategory = async (req, res) => {
       orderBy: {
         id: "desc",
       },
+      include: {
+        Users: {
+          select: {
+            Name: true,
+            profilePic: true
+          }
+        }
+      }
     });
 
     const totalCount = category.length;

@@ -8,7 +8,7 @@ import {
   UsersList,
   user,
   AddUser,
-  patchUser,
+  patchUserWithUpload,
   deleteuser,
   LogUser,
 } from "../database/userDb.mjs";
@@ -45,8 +45,7 @@ export const RegisterUser = async (req, res) => {
 };
 
 //update the app user
-export const UpdateUser = patchUser;
-
+export const UpdateUser = patchUserWithUpload;
 
 
 //deleting app user

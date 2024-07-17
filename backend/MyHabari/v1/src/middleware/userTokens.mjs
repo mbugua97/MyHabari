@@ -15,7 +15,6 @@ export const createRefreshToken = (userId,role) => {
 
 //Send access token as a regular response
 export const sendAccessToken = (req, res, accessToken) => {
-    res.cookie("MH_TkN", accessToken, {signed:true,httpOnly:true}); 
     return res.status(200).json({"token": accessToken});
 
 }

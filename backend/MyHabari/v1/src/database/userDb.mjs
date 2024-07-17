@@ -3,6 +3,20 @@ import { PrismaClient } from '@prisma/client';
 import { validationResult } from 'express-validator';
 
 
+import multer from 'multer';
+
+// Set storage engine for multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+
+const upload = multer({ storage });
 
 const prisma = new PrismaClient();
 
@@ -70,10 +84,8 @@ export const  user=async (req,res)=>{
         where: { id: parsedId },
         //abstracting the password
         select: {
-          id: true,
+          id:true,
           Name: true,
-          Email: true,
-          Admin: true,
           profilePic :true
         },
       });
@@ -110,46 +122,43 @@ export const AddUser = async (NewUser) => {
       }
     };
 
-
-
-export const patchUser = async (req, res) => {
-
-  const errors = validationResult(req)    
-  if(!errors.isEmpty()) {
-      return res.status(400).json({errors: errors.array()})
-  }
-
-    const { query: {User_id } } = req;
-    const parsedId = parseInt(User_id);
-
-      const { Name, Email, Password, Admin } = req.body;
+const patchUser = async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
     
+      const { query: { User_id } } = req;
+      const parsedId = parseInt(User_id);
+      const { Name, Email, Password, Admin } = req.body;
+      const profilePic = req.file ? req.file.path : null; 
       try {
         const updateData = {
           ...(Name && { Name }),
           ...(Email && { Email }),
           ...(Password && { Password }),
           ...(Admin !== undefined && { Admin }),
+          ...(profilePic && { profilePic }),
         };
-  
+    
         const updatedUser = await prisma.Users.update({
-          where: { id: parsedId }, 
+          where: { id: parsedId },
           data: updateData,
           select: {
             id: true,
             Name: true,
             Email: true,
             Admin: true,
+            profilePic: true,
           },
         });
         res.status(200).json(updatedUser);
       } catch (error) {
-      res.status(500).json({message:"user not found"});
+        console.error(error);
+        res.status(500).json({ message: "User not found" });
       }
     };
-
-
-
+export const patchUserWithUpload = [upload.single('profilePic'), patchUser];
 
 
 

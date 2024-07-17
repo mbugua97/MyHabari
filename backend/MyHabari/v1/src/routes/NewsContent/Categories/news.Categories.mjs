@@ -14,7 +14,7 @@ const NewsCategory = Router()
 
 
 //protected for only Super admin User
-NewsCategory.get('/category',UserAdminValidator,News)
+NewsCategory.get('/category',News)
 
 
 //addning a new category

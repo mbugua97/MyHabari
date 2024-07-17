@@ -1,33 +1,47 @@
-//app dependancies
-import express from "express";
-import cookieParser from 'cookie-parser'
-import cors from 'cors'
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import router from './routes/index.mjs'; 
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-//imports
-import router from "./routes/index.mjs";
+const app = express();
 
-const app = express()
+// Set storage engine for multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '..', 'uploads'));
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
 
-const secret=process.env.CookieSecret
+const upload = multer({ storage });
 
-app.use(cookieParser(secret))
+const secret = process.env.CookieSecret;
+
+app.use(cookieParser(secret));
 app.use(express.json());
 
-
 app.use(cors({
-    origin: true,
-    credentials: true
-}))
+  origin: true,
+  credentials: true
+}));
+
+// Serve static files from the "uploads" directory
+app.use('/api/v1/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 
+app.use('/api/v1', router);
 
-//app routes
-app.use('/api/v1',router)
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
 
-
-
-const PORT = process.env.PORT 
-
-
-app.listen(PORT, () => {console.log(`server running at port: ${PORT}`)})
+export default app;
