@@ -22,20 +22,52 @@
 .news-item {
     flex: 1 0 200px;
     border-radius: 30px;
-    background-color: rgb(228, 248, 255);
-    width:350px;
-    height:300px;
+    background-color: rgb(211, 162, 162); /* Light chalk color */
+    width: 350px;
+    height: 300px;
     padding: 10px;
-    margin: 5px; 
+    margin: 5px;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
 }
+
+.news-item:hover {
+    transform: scale(1.05); /* Slightly increase size to create bounce effect */
+    background-color: rgb(235, 235, 235); /* Slightly darker on hover */
+}
+
 .title{
     font-weight: 500;
     font-size: larger;
 }
+
 .content{
     font-weight:100px;
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
+
+
+
 .imagenews{
    padding-left: 100px;
+}
+
+
+
+.progrestrack{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    margin-right:100px;
+}
+
+
+.live, 
+.ready,
+.working-on,
+.progress-start
+{
+    background-color: rgb(31, 115, 194);
+    border-radius: 20px;
+    height:70vh;
+    width: 20vw;
 }

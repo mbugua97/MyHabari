@@ -26,7 +26,7 @@ const SidbarLayout = () => {
 <br/>
 <button onClick={() => dispatch(setPage('news'))}>news</button>
 <br/>
-<button onClick={() => dispatch(setPage('notifications'))}>Notifications</button>
+<button onClick={() => dispatch(setPage('Trending'))}>Trending</button>
 <br/>
 
 {user.Admin===true?

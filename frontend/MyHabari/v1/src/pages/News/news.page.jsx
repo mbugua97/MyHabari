@@ -7,9 +7,9 @@ import NewsContent from './news.content';
 const NewsPage = () => {
   return( 
     <div>
-<div>
+  <div>
 <NewsCategory/>
-</div>
+  </div>
 
 <div>
   <NewsContent/>

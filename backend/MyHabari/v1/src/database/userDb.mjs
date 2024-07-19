@@ -86,6 +86,7 @@ export const  user=async (req,res)=>{
         select: {
           id:true,
           Name: true,
+          Admin:true,
           profilePic :true
         },
       });

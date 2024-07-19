@@ -20,7 +20,6 @@ const newsContentType = useSelector((state) => state.news.currentPage);
 
 
   const renderPage = () => {
-
     switch (newsContentType) {
         case 'all':
             return <News/>;
