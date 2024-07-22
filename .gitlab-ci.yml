@@ -48,7 +48,7 @@ deploy_backend:
   script:
     - chmod 600 pr/p
     - ssh-add pr/p
-    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd MyHabari/MyHabari && git pull && cd backend/Myhabari/v1 && docker-compose pull && docker-compose up -d --build "
+    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd MyHabari/MyHabari/backend/Myhabari/v1 && git pull &&  docker-compose pull && docker-compose up -d --build "
 
 
 
@@ -91,7 +91,7 @@ deploy_frontend:
   script:
     - chmod 600 pr/p
     - ssh-add pr/p
-    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd Myhabari/Myhabari && git pull && cd frontend/Myhabari/v1 && docker-compose pull && docker-compose up -d --build "
+    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd Myhabari/Myhabari/frontend/Myhabari/v1 && git pull && docker-compose pull && docker-compose up -d --build "
 
 
 
