@@ -63,7 +63,19 @@ test_frontend:
   script:
     - echo "will run the test here"
 
-
+build_frontend:
+  image: docker
+  stage: build-Backend
+  services:
+    - docker:dind
+  script:
+    - cd backend/MyHabari/v1
+    - docker build -t myhabari-fe .
+    - docker login -u $u -p $p
+    - docker tag myhabari-fe:latest mbuguanganga/myhabari-fe:latest
+    - docker push mbuguanganga/myhabari-fe:latest
+  only:
+    -  Production
 
 
 deploy_frontend:
