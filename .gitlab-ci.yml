@@ -39,10 +39,47 @@ deploy_backend:
   stage: deploy-Backend
   image: node:20-alpine
   only:
+    - Production
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - chmod 600 pr/i.crt
+    - ssh-add pr/i.crt
+    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd Myhabari/Myhabari && git pull && cd Myhabari/Myhabari/backend/Myhabari/v1 && docker-compose pull && docker-compose up -d --build "
+
+
+
+
+
+test_frontend:
+  stage: test-Frontend
+  image: node:20-alpine
+  only:
+  - Development
   - Production
   script:
-    - echo "will run the deployment here"
+    - echo "will run the test here"
 
+
+
+
+deploy_frontend:
+  stage: deploy-Frontend
+  image: node:20-alpine
+  only:
+    - Production
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - chmod 600 pr/i.crt
+    - ssh-add pr/i.crt
+    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd Myhabari/Myhabari && git pull && cd Myhabari/Myhabari/frontend/Myhabari/v1 && docker-compose pull && docker-compose up -d --build "
 
 
 

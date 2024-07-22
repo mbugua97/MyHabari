@@ -4,7 +4,7 @@ import  {Router} from "express"
 //admin validator middleware
 import { UserAdminValidator,UserValidator } from "../../../middleware/adminValidator.mjs"
 
-import { Newnewscontent,News, deletecontent, newsBycategory,newsByowner } from "../../../controllers/newscontent.controller.mjs"
+import { Newnewscontent,News, deletecontent, newsBycategory,newsByowner,Ownernews } from "../../../controllers/newscontent.controller.mjs"
 
 import { AdminorOwnerValidator } from "../../../middleware/adminValidator.mjs"
 
@@ -25,6 +25,9 @@ NewsContent.get('/content/category/:id',UserValidator,categoryid,newsBycategory)
 //getting by user id
 NewsContent.get('/content/owner/:id',UserValidator,categoryid,newsByowner)
 
+
+//getting my news
+NewsContent.get('/content/self/:id',UserValidator,categoryid,Ownernews)
 
 
 NewsContent.patch('/content/:id',AdminorOwnerValidator,(req,res)=>{

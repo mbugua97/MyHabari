@@ -1,28 +1,28 @@
 import React from 'react';
-import Live from './publish.content/public';
-import Ready from './publish.content/ready';
-import Review from './publish.content/review';
-import Started from './publish.content/started';
-
-
+import { useDispatch } from 'react-redux';
+import Write from './publish.content/write';
+import LiveContent from './publish.content/public';
+import { toggleRefresh } from '../../app/refresh';
+import './index.css';
 
 const NewsPublish = () => {
-  return( 
-<div className='progrestrack'>
-    <div className='progress-start'>
-      <Started/>
-    </div>
-    <div className='working-on'>
-      <Review/>
-    </div>
-    <div className='ready'>
-      <Ready/>
-    </div>
+  const dispatch = useDispatch();
 
-    <div className='ive'>
-      <Live/>
-    </div>
-</div>
-)}
+  const handleRefresh = () => {
+    dispatch(toggleRefresh());
+  };
 
-export default NewsPublish
+  return (
+    <div className='progrestrack'>
+      <div className='working-on'>
+        <>new</>
+        <Write onRefresh={handleRefresh} />
+      </div>
+      <>
+        <LiveContent />
+      </>
+    </div>
+  );
+}
+
+export default NewsPublish;

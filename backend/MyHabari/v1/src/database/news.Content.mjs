@@ -13,12 +13,28 @@ export const ContentList = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
+    const userid=parseInt(req.User_id)
     const skip = (page - 1) * limit;
 
-    const totalCount = await prisma.Publishedcontent.count();
+    const totalCount = await prisma.Publishedcontent.count(
+      {
+        where: {
+          ready : true,
+          owner_id :{
+            not:userid
+          }
+        }
+      }
+    );
     const totalPages = Math.ceil(totalCount / limit);
 
     const content = await prisma.Publishedcontent.findMany({
+      where: {
+        ready : true,
+        owner_id :{
+          not:userid
+        }
+      },
       skip: skip,
       take: limit,
       orderBy: {
@@ -47,6 +63,7 @@ export const ContentList = async (req, res) => {
 
 //fetching news by category
 export const NewsByCategory = async (req, res) => {
+  const userid=parseInt(req.User_id)
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -60,7 +77,12 @@ export const NewsByCategory = async (req, res) => {
     const category_id = req.category_id;
     const parsedId = parseInt(category_id);
     const category = await prisma.Publishedcontent.findMany({
-      where: { category: parsedId },
+    where: { category: parsedId ,
+        ready : true,
+        owner_id :{
+          not:userid
+        }
+      },
       skip: skip,
       take: limit,
       orderBy: {
@@ -95,12 +117,14 @@ export const NewsByCategory = async (req, res) => {
   }
 };
 
-export const NewsByOwners = async (req, res) => {
+export const OwnerNews=  async (req, res) => {
+
+  const userid=parseInt(req.User_id)
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  console.log("fted");
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -109,7 +133,58 @@ export const NewsByOwners = async (req, res) => {
     const category_id = req.category_id;
     const parsedId = parseInt(category_id);
     const category = await prisma.Publishedcontent.findMany({
-      where: { category: parsedId },
+      where: { 
+        owner_id:userid
+      },
+      skip: skip,
+      take: limit,
+      orderBy: {
+        id: "desc",
+      },
+      include: {
+        Users: {
+          select: {
+            Name: true,
+            profilePic: true
+          }
+        }
+      }
+    });
+
+    if (!category) {
+      res.status(404).send({ message: "no news found" });
+      return;
+    }
+    const totalCount = category.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    res.json({
+      currentPage: page,
+      totalPages: totalPages,
+      totalCount: totalCount,
+      data: category,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+export const NewsByOwners = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const category_id = req.category_id;
+    const parsedId = parseInt(category_id);
+    const category = await prisma.Publishedcontent.findMany({
+      where: { category: parsedId ,
+        ready : true
+      },
       skip: skip,
       take: limit,
       orderBy: {
@@ -123,7 +198,6 @@ export const NewsByOwners = async (req, res) => {
     }
     const totalCount = category.length;
     const totalPages = Math.ceil(totalCount / limit);
-
     res.json({
       currentPage: page,
       totalPages: totalPages,

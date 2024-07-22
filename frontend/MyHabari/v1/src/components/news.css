@@ -1,0 +1,23 @@
+.news-item-header{
+    display: flex;
+    justify-content: space-between;
+}
+.actions{
+    display: flex;
+    position: absolute;
+    margin-top: 90px;
+}
+.edit{
+    margin-left: 10px;
+}
+.delete{
+    margin-left: 70px;
+
+    border-radius: 100px;
+}
+.delete:hover {
+    transform: scale(1.5); 
+}
+.edit:hover {
+    transform: scale(1.5); 
+}

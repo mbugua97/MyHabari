@@ -1,4 +1,4 @@
-import { ContentList,AddContent ,NewsByCategory, NewsByOwners, deleteContent} from "../database/news.Content.mjs";
+import { ContentList,AddContent ,NewsByCategory, NewsByOwners,OwnerNews,deleteContent} from "../database/news.Content.mjs";
 import { validationResult } from "express-validator";
 
 export const News =ContentList
@@ -8,6 +8,10 @@ export const newsBycategory=NewsByCategory
 
 //news by owner
 export const newsByowner=NewsByOwners
+
+//news by owner
+export const Ownernews=OwnerNews
+
 
 export const Newnewscontent = async (req, res) => {
     //checking if errors exist in the body validator

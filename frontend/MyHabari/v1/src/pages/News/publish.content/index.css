@@ -1,3 +1,22 @@
-.started{
-    padding-left: 30px;
+.NewContent{
+    color: rgb(0, 0, 0);
+}
+
+.loadingoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; 
+  }
+  
+  .loadingSvg {
+    width: 50px;
+    height: 50px;
+  }
+.publish{
+background-color: rgb(0, 68, 255);
 }

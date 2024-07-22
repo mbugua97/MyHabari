@@ -32,7 +32,7 @@ export const  UsersList=async (req,res)=>{
 
 
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10; 
+    const limit = parseInt(req.query.limit) || 50; 
     const skip = (page - 1) * limit; 
 
     
@@ -48,10 +48,7 @@ export const  UsersList=async (req,res)=>{
       },
       skip: skip,
       take: limit,
-      orderBy: {
-        id: 'desc' 
-      }
-
+      
     }
       
     );

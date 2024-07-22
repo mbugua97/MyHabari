@@ -1,0 +1,29 @@
+/* SearchUser.css */
+
+.search-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Adjust based on your requirement */
+  }
+  
+  .search-input {
+    width: 100%;
+    padding-right: 40px; /* Add padding to make space for the icon */
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red; /* Adjust color as needed */
+    pointer-events: none; /* Prevent the icon from blocking input interactions */
+  }
+  
+  .SearchUser {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 200px;
+    border-radius: 20px;
+    display: flex;
+  }
