@@ -65,7 +65,7 @@ test_frontend:
 
 build_frontend:
   image: docker
-  stage: build-Backend
+  stage: build-Frontend
   services:
     - docker:dind
   script:
