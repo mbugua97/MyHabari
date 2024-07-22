@@ -68,7 +68,7 @@ build_frontend:
   services:
     - docker:dind
   script:
-    - cd backend/MyHabari/v1
+    - cd frontend/MyHabari/v1
     - docker build -t myhabari-fe .
     - docker login -u $u -p $p
     - docker tag myhabari-fe:latest mbuguanganga/myhabari-fe:latest
