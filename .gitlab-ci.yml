@@ -90,7 +90,7 @@ deploy_frontend:
   script:
     - chmod 600 pr/p
     - ssh-add pr/p
-    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd Myhabari/MyHabari/frontend/MyHabari/v1 && git pull "
+    - ssh -o StrictHostKeyChecking=no root@174.138.11.28 "cd MyHabari/MyHabari/frontend/MyHabari/v1 && git pull "
 
 
 
