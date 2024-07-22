@@ -37,7 +37,7 @@ build_backend:
 
 deploy_backend:
   stage: deploy-Backend
-  image: node:20-alpine
+  image: ubuntu
   only:
     - Production
   before_script:
@@ -68,7 +68,7 @@ test_frontend:
 
 deploy_frontend:
   stage: deploy-Frontend
-  image: node:20-alpine
+  image: ubuntu
   only:
     - Production
   before_script:
