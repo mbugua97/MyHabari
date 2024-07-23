@@ -83,16 +83,19 @@ const ManageUsersPage = () => {
       </div>
       <div className='news'>
         {filteredUsers.map((item) => (
-          <div key={item.id}>
-            
-
-
+          <div className='userItem' key={item.id}>
             <DisplayUser name={item.Name} profile={item.profilePic} />
-
-
-
-
+          <div className='adminButton'>
+            <button className='holdButton'>
+          Hold
+           </button>
+           <button  className='deleteButton'>
+          Delete
+           </button>
+        </div>
+        
           </div>
+          
         ))}
       </div>
       <div className='buttonpages'>

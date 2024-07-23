@@ -17,12 +17,12 @@
     display: flex;
     flex-wrap: wrap; 
     gap: 10px; 
-   
 }
 .news-item {
     flex: 1 0 200px;
     border-radius: 30px;
-    background-color: rgb(211, 162, 162); /* Light chalk color */
+    background-color: rgb(253, 241, 241); /* Light chalk color */
+    box-shadow: -1.2px -0.3px 1.6px 1.5px;
     width: 350px;
     height: 300px;
     padding: 10px;

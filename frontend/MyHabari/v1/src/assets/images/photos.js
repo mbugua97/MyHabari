@@ -9,7 +9,8 @@ import dele from './defaults/delete.png'
 import googlephoto from './defaults/google.jpeg'
 import githublogo from './defaults/github.png'
 import search from './defaults/search.png'
-
+import group from './defaults/group.png'
+import PostPhoto from './defaults/post.png'
 const photos={
     applogo,
     DarkLogout,
@@ -21,7 +22,9 @@ const photos={
     live,
     dele,
     edit,
-    search
+    search,
+    group,
+    PostPhoto
 }
 
 

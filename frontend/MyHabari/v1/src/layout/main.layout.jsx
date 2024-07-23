@@ -3,6 +3,7 @@ import AboutPage from '../pages/User/about.page';
 import ManageUsersPage from '../pages/Admin/user.manage';
 import NewsPage from '../pages/News/news.page';
 import NotificationPage from '../pages/Notification/notification.page';
+import AppsettingsPage from '../pages/Admin/user.settings';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
@@ -17,7 +18,7 @@ const MainLayout = () => {
         case 'about':
             return <AboutPage />;
         case 'settings':
-          return <AboutPage />;
+          return <AppsettingsPage/>;
         case 'news':
           return <NewsPage />;
         case 'notifications':

@@ -30,7 +30,7 @@ const SidbarLayout = () => {
 <br/>
 
 {user.Admin===true?
-<button onClick={() => dispatch(setPage('setting'))}>app settings</button>
+<button onClick={() => dispatch(setPage('settings'))}>app settings</button>
   :""}
   <br/>
 {user.Admin===true?

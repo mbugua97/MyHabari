@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { Img } from '@chakra-ui/react';
 import ImageDisplayComponent from './image.component';
 import photos from '../assets/images/photos';
@@ -10,6 +10,7 @@ const Root_url = import.meta.env.VITE_API_URL;
 const token = Cookies.get("MH_TKN");
 
 function DisplayNews({ live, profilesrc, title, content, owner, deletedit, Did, onDelete }) {
+  const [Live, setLive] = useState(false);
   const handleDelete = async () => {
     try {
       const response = await axios.delete(`${Root_url}/content/${Did}`, {
@@ -24,6 +25,11 @@ function DisplayNews({ live, profilesrc, title, content, owner, deletedit, Did, 
       console.error('Error:', error);
     }
   };
+
+
+  const toggleLive = () => {
+    setLive(!Live);
+  }
 
   return (
     <div className='news-item'>
@@ -52,15 +58,13 @@ function DisplayNews({ live, profilesrc, title, content, owner, deletedit, Did, 
 
       {deletedit === true ? (
         <div className='actions'>
-          <div className='edit'>
-            <button>
-              <ImageDisplayComponent src={photos.edit} height={"30px"} />
-            </button>
-          </div>
-          <div>
-            <button className='delete' onClick={handleDelete}>
-              <ImageDisplayComponent src={photos.dele} height={"30px"} />
-            </button>
+          <div className="app-container">
+          <button
+        onClick={toggleLive}
+        className={`toggle-button ${Live ? 'live' : 'offline'}`}
+      >
+        { Live ? "Withdraw" : "Go Live"}
+      </button>
           </div>
         </div>
       ) : (

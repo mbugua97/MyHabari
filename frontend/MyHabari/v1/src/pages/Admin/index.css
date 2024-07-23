@@ -27,3 +27,85 @@
     border-radius: 20px;
     display: flex;
   }
+.userItem{
+  width: 200px;
+}
+.adminButton{
+  display: flex;
+  flex-direction: row;
+}
+.holdButton{
+  color:white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(31, 79, 182);
+  border-radius: 20px;
+  width:70px
+}
+.deleteButton{
+  color:white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(31, 79, 182);
+  margin-left: 5px;
+  width:100px;
+  border-radius: 20px;
+}
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 200;
+  font-size: large;
+  font-style: normal;
+}
+.ActiveUsers{
+  display: flex;
+  height: 300px;
+  padding-top: 20px;
+  padding-left: 20px;
+  border-radius: 20px;
+  width:70vw;
+  background-color: antiquewhite;
+  margin-bottom: 10px;
+}
+.postdemograph{
+  display: flex;
+  padding-top: 30px;
+  height: 300px;
+  padding-top: 20px;
+  padding-left: 20px;
+  border-radius: 20px;
+  width:70vw;
+  margin-bottom: 30px;
+  background-color: antiquewhite;
+}
+.postdemograph:hover {
+  transform: scale(1.05); /* Slightly increase size to create bounce effect */
+  background-color: rgb(235, 235, 235); /* Slightly darker on hover */
+}
+.ActiveUsers:hover {
+  transform: scale(1.05); /* Slightly increase size to create bounce effect */
+  background-color: rgb(235, 235, 235); /* Slightly darker on hover */
+}
+
+.refreshButton{
+  background-color: rgb(102, 102, 250);
+  border-radius: 30px;
+  width: 100px;
+}
+.Appsettings{
+  margin-top: 20px;
+}
+.Number{
+  margin-top: 40px;
+  margin-left: 60px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 200;
+  font-size: large;
+  font-style: normal;
+}
+.bebas-neue-regula {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 500;
+  font-style:italic;
+  font-size:xx-large;
+  margin-top: 70px;
+  margin-left: 100px;
+}

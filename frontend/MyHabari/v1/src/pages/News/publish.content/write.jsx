@@ -76,7 +76,7 @@ const category=1
     {error}
     <form onSubmit={handlePublish}>
       <FormInput label="Title" type="text"  value={content_title} onChange={(e) => setTitle(e.target.value)} required />
-  Content:
+    Content
       <Textarea className="paragraph" type="text" value={content} onChange={(e) => setContent(e.target.value)} required />
     <br/>
      

@@ -1,11 +1,16 @@
-.category{
+.category {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
 }
+
 .categorybutton{
-    background-color:rgb(192, 160, 243);
+    background-color:rgb(170, 145, 209);
     height:50px;
     width:200px;
     border-radius:10px;
+    border-radius: 30px;
+}
+.categorybutton:hover{
+    transform: scale(1.3);    
 }
